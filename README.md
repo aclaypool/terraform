@@ -36,7 +36,9 @@ http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Scenario2.html
     * sa-east-1
 * -var "common_tags= "
   * type:  
-    * map -any map of common tags to be applied to objects
+    * map
+  * notes
+    * any map of common tags to be applied to objects
 * -var "ssh_key= "
   * type:  
     * string 
