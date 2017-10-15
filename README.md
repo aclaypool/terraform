@@ -1,6 +1,7 @@
 # Terraform for Scenario 2 VPC
 http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Scenario2.html
 
+## Usage
 #Required Arguments:
 -var "key=AKIA...." type: string
 -var "secret=...." type: string
