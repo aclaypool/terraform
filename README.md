@@ -4,17 +4,22 @@ http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Scenario2.html
 ## Usage
 ### Required Arguments:
 * -var "key=AKIA...." 
-  * type: string
+  * type: 
+    * string
 * -var "secret=...." 
-  * type: string
+  * type: 
+    * string
 * -var "public_ip=..."
-  * type: string -executing `curl ifconfig.me` will grab the public IP of your current network and allow it for ssh into hosts
+  * type: 
+    * string
+  * notes
+    * executing ```bash -var "public_ip=`curl ifconfig.me`" ``` will grab the public IP of your current network and allow it for ssh into hosts
 
 ### Optional Arguments:
 * -var "aws_region=xxxx" 
   * type: 
     * string
-  *options:
+  * options:
     * us-east-2
     * us-east-1
     * us-west-1
