@@ -12,8 +12,8 @@ http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Scenario2.html
 
 ### Optional Arguments:
 * -var "aws_region=xxxx" 
-  *type: 
-    *string
+  * type: 
+    * string
   *options:
     * us-east-2
     * us-east-1
