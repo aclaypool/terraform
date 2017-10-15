@@ -20,6 +20,11 @@ http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Scenario2.html
     * executing ```sh -var "public_ip=`curl ifconfig.me`" ``` will grab the public IP of your current network and allow it for ssh into hosts
 
 ### Optional Arguments:
+* -var "inst_count= "
+  * type:  
+    * int
+  * notes
+    * default 1.  Please ensure that service limits on your account can accomodate chosen number.
 * -var "aws_region=xxxx" 
   * type: 
     * string
