@@ -2,6 +2,7 @@
 http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Scenario2.html
 
 ## Usage
+A terraform init may be required if you do not have the AWS and NULL already installed
 ### Required Arguments:
 * -var "key=AKIA...." 
   * type: 
