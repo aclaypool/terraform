@@ -6,9 +6,13 @@ http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Scenario2.html
 * -var "key=AKIA...." 
   * type: 
     * string
+  * notes
+    * The aws access key portion of your programmatic credentials
 * -var "secret=...." 
   * type: 
     * string
+  * notes
+    * The aws secret portion of your programmatic credentials
 * -var "public_ip=..."
   * type: 
     * string
