@@ -22,8 +22,8 @@ resource "aws_instance" "web" {
     volume_type = "${var.drive_iops}"
     volume_size = "${var.drive_size}"
   }
-  tags = "${merge(var.common_tags,map("Name","Hello World-${count.index+1}"))}"
-  volume_tags = "${merge(var.common_tags,map("Name","Hello World-${count.index+1}"))}"
+  tags = "${merge(var.common_tags,map("Name","${var.name}-Hello World-${count.index+1}"))}"
+  volume_tags = "${merge(var.common_tags,map("Name","${var.name}Hello World-${count.index+1}"))}"
   count = "${var.inst_count}"
 }
 

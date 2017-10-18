@@ -2,7 +2,7 @@
 provider information pulled from command line variables
 */
 provider "aws" {
-  access_key = "${var.key}"
-  secret_key = "${var.secret}"
+  shared_credentials_file = "${var.aws_creds}"
   region = "${var.aws_region}"
+  profile = "${var.aws_profile}"
 }

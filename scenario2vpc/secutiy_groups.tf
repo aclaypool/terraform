@@ -16,7 +16,7 @@ resource "aws_security_group" "allow_all_outbound" {
     protocol = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  tags = "${merge(var.common_tags,map("Name","Allow All Outbound"))}"
+  tags = "${merge(var.common_tags,map("Name","${var.name} Allow All Outbound"))}"
 }
 
 resource "aws_security_group" "allow_all_inbound" {
@@ -30,7 +30,7 @@ resource "aws_security_group" "allow_all_inbound" {
     protocol = "-1"
     cidr_blocks = ["10.0.0.0/16"]
   }
-  tags = "${merge(var.common_tags,map("Name","Allow All VPC Inbound"))}"
+  tags = "${merge(var.common_tags,map("Name","${var.name} Allow All VPC Inbound"))}"
 }
 
 resource "aws_security_group" "allow_ssh" {
@@ -42,9 +42,9 @@ resource "aws_security_group" "allow_ssh" {
     from_port = 22
     to_port = 22
     protocol = "tcp"
-    cidr_blocks = ["${var.public_ip}/32"]
+    cidr_blocks = ["${var.public_ip}"]
   }
-  tags = "${merge(var.common_tags,map("Name","Allow Specific SSH"))}"
+  tags = "${merge(var.common_tags,map("Name","${var.name} Allow Specific SSH"))}"
 }
 
 resource "aws_security_group" "allow_all_web" {
@@ -64,5 +64,5 @@ resource "aws_security_group" "allow_all_web" {
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  tags = "${merge(var.common_tags,map("Name","Allow All Web"))}"
+  tags = "${merge(var.common_tags,map("Name","${var.name} Allow All Web"))}"
 }

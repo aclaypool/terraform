@@ -11,7 +11,7 @@ aws_internet_gateway.gw - Internet Gateway service used as the internet gateway 
 
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
-  tags = "${merge(var.common_tags,map("Name","Main VPC"))}"
+  tags = "${merge(var.common_tags,map("Name","${var.name} Main VPC"))}"
 }
 
 resource "aws_route_table" "private" {
@@ -20,7 +20,7 @@ resource "aws_route_table" "private" {
     cidr_block = "0.0.0.0/0"
     nat_gateway_id = "${aws_nat_gateway.gw.id}"
   }
-  tags = "${merge(var.common_tags,map("Name","Private Route Table"))}"
+  tags = "${merge(var.common_tags,map("Name","${var.name} Private Route Table"))}"
 }
 
 resource "aws_route_table" "public" {
@@ -29,7 +29,7 @@ resource "aws_route_table" "public" {
     cidr_block = "0.0.0.0/0"
     gateway_id = "${aws_internet_gateway.gw.id}"
   }
-  tags = "${merge(var.common_tags,map("Name","Public Route Table"))}"
+  tags = "${merge(var.common_tags,map("Name","${var.name} Public Route Table"))}"
 }
 
 resource "aws_route_table_association" "public" {
@@ -44,23 +44,23 @@ resource "aws_route_table_association" "private" {
 
 resource "aws_subnet" "public" {
   vpc_id   = "${aws_vpc.main.id}"
-  cidr_block = "10.0.0.0/24"
-  tags = "${merge(var.common_tags,map("Name","Public Subnet"))}"
+  cidr_block = "${var.priv_subnet}"
+  tags = "${merge(var.common_tags,map("Name","${var.name} Public Subnet"))}"
 }
 
 resource "aws_subnet" "private" {
   vpc_id   = "${aws_vpc.main.id}"
-  cidr_block = "10.0.1.0/24"
-  tags = "${merge(var.common_tags,map("Name","Private Subnet"))}"
+  cidr_block = "${var.pub_subnet}"
+  tags = "${merge(var.common_tags,map("Name","${var.name} Private Subnet"))}"
 }
 
 resource "aws_nat_gateway" "gw" {
   allocation_id = "${aws_eip.nat.id}"
   subnet_id   = "${aws_subnet.public.id}"
-  tags = "${merge(var.common_tags,map("Name","NAT Gateway"))}"
+  tags = "${merge(var.common_tags,map("Name","${var.name} NAT Gateway"))}"
 }
 
 resource "aws_internet_gateway" "gw" {
   vpc_id = "${aws_vpc.main.id}"
-  tags = "${merge(var.common_tags,map("Name","Internet Gateway"))}"
+  tags = "${merge(var.common_tags,map("Name","${var.name} Internet Gateway"))}"
 }
