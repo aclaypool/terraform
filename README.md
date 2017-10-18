@@ -7,8 +7,8 @@ A terraform init may be required if you do not have the AWS and NULL plugins alr
 This script assumes that you have aws credentials in an aws credentials file per AWS' documentation
 http://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html
 
-``` sh terraform plan -var 'ssh_key=~/.ssh/KEY.pem' -var "public_ip=`curl ifconfig.me`/32" -var 'key_name=KEY' -var 'aws_profile=PRODUCTION' ```
-``` sh terraform apply -var 'ssh_key=~/.ssh/KEY.pem' -var "public_ip=`curl ifconfig.me`/32" -var 'key_name=KEY' -var 'aws_profile=PRODUCTION' ```
+* ``` sh terraform plan -var 'ssh_key=~/.ssh/KEY.pem' -var "public_ip=`curl ifconfig.me`/32" -var 'key_name=KEY' -var 'aws_profile=PRODUCTION' ```
+* ``` sh terraform apply -var 'ssh_key=~/.ssh/KEY.pem' -var "public_ip=`curl ifconfig.me`/32" -var 'key_name=KEY' -var 'aws_profile=PRODUCTION' ```
 
 ### Required Arguments:
 * -var "aws_profile=..."
