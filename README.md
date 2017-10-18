@@ -2,7 +2,14 @@
 http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Scenario2.html
 
 ## Usage
-A terraform init may be required if you do not have the AWS and NULL plugins already installed
+A terraform init may be required if you do not have the AWS and NULL plugins already installed.
+
+This script assumes that you have aws credentials in an aws credentials file per AWS' documentation
+http://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html
+
+``` sh terraform plan -var 'ssh_key=~/.ssh/KEY.pem' -var "public_ip=`curl ifconfig.me`/32" -var 'key_name=KEY' -var 'aws_profile=PRODUCTION' ```
+``` sh terraform apply -var 'ssh_key=~/.ssh/KEY.pem' -var "public_ip=`curl ifconfig.me`/32" -var 'key_name=KEY' -var 'aws_profile=PRODUCTION' ```
+
 ### Required Arguments:
 * -var "aws_profile=..."
   * type:
@@ -13,7 +20,7 @@ A terraform init may be required if you do not have the AWS and NULL plugins alr
   * type:
     * string
   * notes
-    * The AWS credentials file for your
+    * The AWS credentials file for your.  http://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html
 * -var "public_ip=..."
   * type:
     * string
