@@ -1,5 +1,5 @@
 /*
-output of ips and ids for created instances
+Output of ips and ids for the created instances
 */
 output "instance_ips" {
   value = "${aws_eip.inst.*.public_ip}"

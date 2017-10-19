@@ -105,6 +105,11 @@ http://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html
     * string
   * notes
     * default 10.0.1.0/24. CIDR block for the public subnet
+* -var "vpc_cidr= "
+  * type:
+    * string
+  * notes
+    * default 10.0.0.0/16. CIDR block for the entire VPC
 
 
 

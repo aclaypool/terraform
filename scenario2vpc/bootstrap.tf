@@ -1,10 +1,10 @@
 /*
-null_resource to bootstrap instances to ssh and provision
-count based on input variable inst_count
-trigger on elastic ip availability
-host ips from elastic ip list
-private key from ssh_key variable
-sleep in sh command due to dockerd not being up immediately as soon as ssh available
+A null_resource in order to bootstrap instances via ssh.
+The count is based on input variable inst_count in order to enumerate ssh sessions.
+
+Host ips from elastic obtained from elastic IP generated list
+Private key provided from the ssh_key variable.
+The sleep in sh command due to dockerd not being up immediately as soon as ssh is available.
 */
 resource "null_resource" "bootstrap" {
   count = "${var.inst_count}"
@@ -18,6 +18,8 @@ resource "null_resource" "bootstrap" {
       private_key = "${file(var.ssh_key)}"
       timeout = "4m"
     }
-    inline = "sleep 15s && sudo docker run hello-world"
+    inline = [
+      "sleep 15s && sudo docker run hello-world"
+    ]
   }
 }

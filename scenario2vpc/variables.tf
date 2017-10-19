@@ -3,24 +3,25 @@ variable breakdown for all resource calls
 
 REQUIRED VARIABLES
 aws_profile - the name of the aws profile in the aws credentials file
-key_name - the name of the ssh key you wish to use in AWS
-public_ip - public ip of your current network to allow terraform ssh for bootstrap (required)
+aws_ssh_key_name - the name of the ssh key you wish to use in AWS
+public_ip - public ip of your current network to allow terraform ssh for bootstrap
 ssh_key - local location of private ssh key used to ssh into hosts
 
 OPTIONAL VARIABLES
 ami - Amazon managed ECS AMI Ids by region
 aws_cred - local file location of the aws credentials file you wish to use ~/.aws/credentials is typical location
-aws_region - Desired region to deploy
+aws_region - desired region to deploy
 common_tags - map of tags to be applied to items in the project
 drive_size - desired instance root volume size
 drive_iops - desired iops (standard, gp2, io1)
 inst_count - number of instances you would like to watch
 inst_size - desired size of instance
-name - a string to be added to the front of all Name tagging
+name - a string to be added to the front of all "Name" tagging
 new_key - boolean if you want to upload a new key
 priv_subnet - CIDR block for private subnet
 pub_file - file location of a pub ssh key if you want to upload a new ssh key
 pub_subnet - CIDR block for public subnet
+vpc_cidr - CIDR block for entire VPC
 
 */
 variable "ami" {
@@ -51,6 +52,9 @@ variable "aws_region" {
   description = "AWS Desired Region"
   default = "us-east-1"
 }
+variable "aws_ssh_key_name" {
+  description = "Name of the key that you wish to use."
+}
 variable "common_tags" {
   description = "AWS tags to be applied to all items"
   type = "map"
@@ -75,9 +79,6 @@ variable "inst_count" {
 variable "inst_size" {
   description = "Size of AWS instance you wish to launch"
   default = "t2.nano"
-}
-variable "key_name" {
-  description = "Name of the key that you wish to use."
 }
 variable "name"{
   description = "Name that you want to be applied to the Name tag of associated items"
@@ -105,7 +106,10 @@ variable "public_ip" {
 variable "ssh_key" {
   description = "Local location of ssh key you will use to ssh into host post launcy"
 }
-
+variable "vpc_cidr" {
+  description = "CIDR block for the entire VPC"
+  default = "10.0.0.0/16"
+}
 
 
 

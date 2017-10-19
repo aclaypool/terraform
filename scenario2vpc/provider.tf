@@ -1,5 +1,5 @@
 /*
-provider information pulled from command line variables
+The provider information pulled from command line variables.
 */
 provider "aws" {
   shared_credentials_file = "${var.aws_creds}"
