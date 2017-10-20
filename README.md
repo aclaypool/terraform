@@ -2,7 +2,7 @@
 http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Scenario2.html
 
 ## Usage
-A terraform init may be required if you do not have the AWS and NULL plugins already installed.
+A terraform init may be required if you do not have the AWS and NULL plugins already installed.  OSX versions of the terraform and the pluggins are included in the repo.
 
 This script assumes that you have aws credentials in an aws credentials file per AWS' documentation
 http://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html
