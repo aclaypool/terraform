@@ -16,7 +16,7 @@ http://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html
     * string
   * notes
     * Name of the profile you wish to use in your aws credentials file
-* -var "aws_creds=~\.aws\credentials"
+* -var "aws_creds=~/.aws/credentials"
   * type:
     * string
   * notes
