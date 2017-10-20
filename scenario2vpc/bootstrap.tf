@@ -9,17 +9,24 @@ The sleep in sh command due to dockerd not being up immediately as soon as ssh i
 resource "null_resource" "bootstrap" {
   count = "${var.inst_count}"
   triggers {
-    instance_ids = "${join(",",aws_eip.inst.*.public_ip)}"
+    instance_ids = "${join(",",aws_instance.web.*.public_ip)}"
+  }
+   connection {
+    user = "ec2-user"
+    host = "${element(aws_instance.web.*.public_ip,count.index)}"
+    private_key = "${file(var.ssh_key)}"
+    timeout = "4m"
+  }
+  provisioner "file" {
+    source = "./bootstrap.sh"
+    destination = "/tmp/bootstrap.sh"
   }
   provisioner "remote-exec" {
-    connection {
-      user = "ec2-user"
-      host = "${element(aws_eip.inst.*.public_ip,count.index)}"
-      private_key = "${file(var.ssh_key)}"
-      timeout = "4m"
-    }
+
     inline = [
-      "sleep 15s && sudo docker run hello-world"
+      "sleep 10s",
+      "chmod +x /tmp/bootstrap.sh",
+      "sudo docker run hello-world"
     ]
   }
 }

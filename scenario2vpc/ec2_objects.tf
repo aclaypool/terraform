@@ -3,7 +3,6 @@ Collection of all objects that make of EC2 Instances
 aws_key_pair.key - key pair creation if you are uploading a new ssh key for use on these instances the count is used as a boolean to make 0 keys if the new_key variable is false.
 aws_instance.web - ECS docker container instances of variable inst_count
 aws_eip.nat - Elastic IP to be used for the NAT Gateway
-aws_eip.inst - Elastic IP of variable inst_count to be used as Elastic IPs of the Instances launched
 */
 resource "aws_key_pair" "key" {
   count = "${var.new_key}"
@@ -15,7 +14,7 @@ resource "aws_instance" "web" {
   ami = "${lookup(var.ami,var.aws_region)}"
   instance_type = "${var.inst_size}"
   subnet_id = "${aws_subnet.public.id}"
-  associate_public_ip_address = false
+  associate_public_ip_address = true
   vpc_security_group_ids = ["${aws_security_group.allow_all_outbound.id}","${aws_security_group.allow_all_web.id}","${aws_security_group.allow_ssh.id}"]
   key_name = "${var.aws_ssh_key_name}"
   root_block_device {
@@ -30,10 +29,3 @@ resource "aws_instance" "web" {
 resource "aws_eip" "nat" {
   vpc = "True"
 }
-
-resource "aws_eip" "inst" {
-  vpc = "True"
-  count = "${var.inst_count}"
-  instance = "${element(aws_instance.web.*.id,count.index)}"
-}
-

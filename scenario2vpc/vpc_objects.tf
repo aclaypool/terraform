@@ -10,7 +10,7 @@ aws_internet_gateway.gw - Internet Gateway service used as the internet gateway 
 */
 
 resource "aws_vpc" "main" {
-  cidr_block = "10.0.0.0/16"
+  cidr_block = "${var.vpc_cidr}"
   tags = "${merge(var.common_tags,map("Name","${var.name} Main VPC"))}"
 }
 

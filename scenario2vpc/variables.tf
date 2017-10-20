@@ -85,8 +85,8 @@ variable "name"{
   default = "New"
 }
 variable "new_key" {
-  description = "Boolean if you are uploading a new key or not."
-  default = false
+  description = "INT based boolean 0 or 1 if you are uploading a new key or not."
+  default = 0
 }
 variable "priv_subnet" {
   description = "CIDR block for the private subnet you wish to use"
